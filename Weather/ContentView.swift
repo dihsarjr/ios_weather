@@ -30,6 +30,16 @@ struct ContentView: View {
                     ExtractedView(dayOfWeek: "SUN", imageName: "sun.dust.fill", temprature: "48°c");     ExtractedView(dayOfWeek: "MON", imageName: "cloud.snow.fill", temprature: "80°c");   ExtractedView(dayOfWeek: "TUE", imageName: "cloud.drizzle.fill", temprature: "56°c");     ExtractedView(dayOfWeek: "WED", imageName: "wind", temprature: "55°c");   ExtractedView(dayOfWeek: "THU", imageName: "cloud.moon.bolt.fill", temprature: "76°c");
                 }
                 Spacer()
+                Button{
+                    print("Taped")
+                }label: {
+                    Text("Change Date and Time")
+                        .font(.system(size: 20,weight: .semibold))
+                        .frame(width: 280, height:50).background(.white)
+                        .clipShape(.buttonBorder)
+                }
+                Spacer()
+                
             }
         }
     }
