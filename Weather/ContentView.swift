@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var isNight = false
+    @State private var isNight:Bool = false
     
     var body: some View {
         ZStack{
-            BackgroundView(topColor: isNight ? .black: .blue, bottomColor: isNight ? .white : Color("lightBlue"))
+            BackgroundView(isNight: $isNight)
             VStack{
                 Text("Cupertino, CA")
                     .font(.system(size: 30,weight: .medium, design: .default))
@@ -76,12 +76,11 @@ struct ExtractedView: View {
 }
 
 struct BackgroundView: View {
-    var topColor:Color
-    var bottomColor:Color
+    @Binding var isNight: Bool
     var body: some View {
-        LinearGradient(colors: [topColor,bottomColor],
+        LinearGradient(colors: [isNight ? .black: .blue,  isNight ? .white : Color("lightBlue")],
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
-        .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+        .ignoresSafeArea()
     }
 }
