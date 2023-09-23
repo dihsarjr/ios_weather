@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var isNight = false
+    
     var body: some View {
         ZStack{
-            LinearGradient(colors: [.blue,Color("lightBlue")],
-                           startPoint: .topLeading,
-                           endPoint: .bottomTrailing)
-                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            BackgroundView(topColor: isNight ? .black: .blue, bottomColor: isNight ? .white : Color("lightBlue"))
             VStack{
                 Text("Cupertino, CA")
                     .font(.system(size: 30,weight: .medium, design: .default))
@@ -27,10 +27,17 @@ struct ContentView: View {
                 }
                 Spacer()
                 HStack(spacing:20){
-                    ExtractedView(dayOfWeek: "SUN", imageName: "sun.dust.fill", temprature: "48°c");     ExtractedView(dayOfWeek: "MON", imageName: "cloud.snow.fill", temprature: "80°c");   ExtractedView(dayOfWeek: "TUE", imageName: "cloud.drizzle.fill", temprature: "56°c");     ExtractedView(dayOfWeek: "WED", imageName: "wind", temprature: "55°c");   ExtractedView(dayOfWeek: "THU", imageName: "cloud.moon.bolt.fill", temprature: "76°c");
+                    ExtractedView(dayOfWeek: "SUN", imageName: "sun.dust.fill", temprature: "48°c")
+                    ExtractedView(dayOfWeek: "MON", imageName: "cloud.snow.fill", temprature: "80°c")
+                    ExtractedView(dayOfWeek: "TUE", imageName: "cloud.drizzle.fill", temprature: "56°c")
+                    ExtractedView(dayOfWeek: "WED", imageName: "wind", temprature: "55°c")
+                    ExtractedView(dayOfWeek: "THU", imageName: "cloud.moon.bolt.fill", temprature: "76°c")
                 }
                 Spacer()
                 Button{
+                    
+                    isNight = !isNight
+                    
                     print("Taped")
                 }label: {
                     Text("Change Date and Time")
@@ -65,5 +72,16 @@ struct ExtractedView: View {
                 .font(.system(size: 22,weight: .medium))
                 .foregroundColor(.white)
         }
+    }
+}
+
+struct BackgroundView: View {
+    var topColor:Color
+    var bottomColor:Color
+    var body: some View {
+        LinearGradient(colors: [topColor,bottomColor],
+                       startPoint: .topLeading,
+                       endPoint: .bottomTrailing)
+        .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
     }
 }
